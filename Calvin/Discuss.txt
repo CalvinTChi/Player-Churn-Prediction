@@ -1,0 +1,5 @@
+1. Treat each transaction as a sample - a single user can generate multiple transactions by purchasing at different times.
+2. What are # of session starts
+3. What are heartbeats
+5. For ML pipeline, if player ID already exists, do kNN, if not, go through regular model?
+7. 
