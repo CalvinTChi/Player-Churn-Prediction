@@ -1,6 +1,7 @@
 Info on whether email provided or not
 Number of FB friends
 Special offer
-Next machine to unlock
 Hourly bonus
 VIP status
+Frequency in spins/game or unit time
+Number of times credit amount exceeds or goes below 2 standard deviations from the mean credit / per game or unit time
