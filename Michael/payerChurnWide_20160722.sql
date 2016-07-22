@@ -58,6 +58,9 @@ where u_custom_platform = 'iOS' and idfa is not null and event_time between '201
 
 select t.idfa, t.rn, t.rev, case when t.u_networkid is null then False else True end as "hasEmail", coalesce(f.friends,0) as "fb_friends", t.e_viptier, t.event_time, t.e_purchaseamount, t.credits, t.e_level, datediff('hour', t.event_time, t.next_event_time) as hours_until, datediff('hour', t.event_time,t.previous_event_time) as hours_prior, t.lapse7, t.lapse14, t.lapse30
 
+, coalesce(sum(case when e.event_type = 'purchase_verified' and e.event_time between t.event_time + interval '5 minutes' and t.event_time + interval '7 days' then e.qws end),0) revNext7Days
+, coalesce(sum(case when e.event_type = 'purchase_verified' and e.event_time between t.event_time + interval '5 minutes' and t.event_time + interval '14 days' then e.qws end),0) revNext14Days
+, coalesce(sum(case when e.event_type = 'purchase_verified' and e.event_time between t.event_time + interval '5 minutes' and t.event_time + interval '30 days' then e.qws end),0) revNext30Days
 , count(case when e.event_type = 'outOfCredits' and e.event_time between t.event_time - interval '56 days' and t.event_time - interval '49 days' then e.idfa end) ooc_56_49d
 , count(case when e.event_type = 'outOfCredits' and e.event_time between t.event_time - interval '49 days' and t.event_time - interval '42 days' then e.idfa end) ooc_49_42d
 , count(case when e.event_type = 'outOfCredits' and e.event_time between t.event_time - interval '42 days' and t.event_time - interval '35 days' then e.idfa end) ooc_42_35d
